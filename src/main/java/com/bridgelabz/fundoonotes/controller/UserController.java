@@ -1,6 +1,8 @@
 package com.bridgelabz.fundoonotes.controller;
 
+import com.bridgelabz.fundoonotes.dto.request.LoginRequestDto;
 import com.bridgelabz.fundoonotes.dto.request.UserRegisterRequestDto;
+import com.bridgelabz.fundoonotes.dto.response.LoginResponseDto;
 import com.bridgelabz.fundoonotes.dto.response.UserResponseDto;
 import com.bridgelabz.fundoonotes.service.UserService;
 import jakarta.validation.Valid;
@@ -20,5 +22,11 @@ public class UserController {
             @Valid @RequestBody UserRegisterRequestDto requestDto) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(userService.register(requestDto));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponseDto> login(
+            @Valid @RequestBody LoginRequestDto requestDto) {
+        return ResponseEntity.ok(userService.login(requestDto));
     }
 }
